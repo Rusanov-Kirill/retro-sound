@@ -6,6 +6,7 @@ import styles from './Header.module.scss';
 const Header = () => {
     return (
         <div className={styles.wrapper}>
+            <div className={styles['drag-area']}></div>
             <Button border={true} background={true}>+</Button>
             <Logo />
             <Button border={true} background={true}>&times;</Button>
