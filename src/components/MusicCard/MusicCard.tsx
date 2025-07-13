@@ -21,7 +21,7 @@ const MusicCard = () => {
         <div className={styles.wrapper}>
             <div className={styles['music-image-wrapper']}>
                 {music.imgSrc ? (
-                    <img className={styles['music-image']} src={music.imgSrc} alt="Album image"></img>
+                    <img src={music.imgSrc} alt="Album image"></img>
                 ) : (
                     <img className={styles['music-image']} src="src/assets/svgs/music-key-colored.svg" alt="Default song image" />
                 )}
