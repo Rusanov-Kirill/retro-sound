@@ -6,6 +6,7 @@
     margin-top: 30px;
     gap: 5px;
     user-select: none;
+    margin-bottom: 17.5px;
 
     .music-image-wrapper {
         display: flex;
@@ -16,6 +17,10 @@
         align-items: center;
         justify-content: center;
         background-color: $dark-purple;
+        
+        img {
+            -webkit-user-drag: none;
+        }
     }
 
     .music-image {
