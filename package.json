@@ -6,20 +6,19 @@
     "dev": "run-s electron-build dev-main",
     "dev-main": "concurrently \"vite\" \"wait-on http://localhost:5173 && electronmon .\"",
     "electron-build": "tsc -p tsconfig.electron.json",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "pack": "electron-builder --dir",
+    "build": "vite build",
+    "dist": "electron-builder"
   },
   "main": "dist-electron/main.js",
   "build": {
-    "appId": "com.yourapp.id",
+    "appId": "com.retro.sound",
+    "productName": "Retro Sound",
     "files": [
       "dist/**/*",
-      "electron/**/*",
-      "node_modules/**/*",
-      "package.json"
-    ],
-    "directories": {
-      "buildResources": "assets"
-    }
+      "dist-electron/**/*"
+    ]
   },
   "dependencies": {
     "concurrently": "^9.2.0",
@@ -35,7 +34,6 @@
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
     "@vitejs/plugin-react": "^4.5.2",
-    "cross-env": "^7.0.3",
     "electron": "^37.2.0",
     "electron-builder": "^26.0.12",
     "electronmon": "^2.0.3",
