@@ -1,23 +1,13 @@
-import { Navigate, useRoutes } from 'react-router-dom';
-
+import { Routes, Route, Navigate } from 'react-router-dom';
 import HomePage from '../pages/HomePage/HomePage';
 
 const AppRoutes = () => {
-    const routes = useRoutes([
-        {
-            path: '/home',
-            element: (
-                <HomePage />
-            ),
-            index: true,
-        },
-        {
-            path: '*',
-            element: <Navigate to="/home" replace />,
-        },
-    ]);
-
-    return routes;
+  return (
+    <Routes>
+      <Route path="/home" element={<HomePage />} />
+      <Route path="*" element={<Navigate to="/home" replace />} />
+    </Routes>
+  );
 };
 
 export default AppRoutes;
