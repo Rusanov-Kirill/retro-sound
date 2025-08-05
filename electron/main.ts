@@ -1,5 +1,6 @@
 import { app, BrowserWindow, Menu } from 'electron'
 import path from 'path'
+import { format } from 'url'
 
 function createWindow() {
   Menu.setApplicationMenu(null);
@@ -11,18 +12,22 @@ function createWindow() {
     maximizable: false,
     frame: false,
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js'),
       nodeIntegration: false,
       contextIsolation: true,
     }
   })
 
-  const devServerUrl = process.env.VITE_DEV_SERVER_URL || 'http://localhost:5173'
-  
-  mainWindow.loadURL(devServerUrl).catch((error) => {
-    console.log('Dev server not available, loading from dist/index.html:', error.message)
-    mainWindow.loadFile(path.join(__dirname, '../dist/index.html'))
-  })
+  const indexPath = path.join(__dirname, '../dist/index.html');
+
+  if (process.env.VITE_DEV_SERVER_URL) {
+    mainWindow.loadURL(process.env.VITE_DEV_SERVER_URL);
+  } else {
+    mainWindow.loadURL(format({
+      pathname: indexPath,
+      protocol: 'file:',
+      slashes: true
+    }));
+  }
 }
 
 app.whenReady().then(() => {
