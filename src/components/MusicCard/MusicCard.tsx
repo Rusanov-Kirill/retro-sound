@@ -23,7 +23,7 @@ const MusicCard = () => {
                 {music.imgSrc ? (
                     <img src={music.imgSrc} alt="Album image"></img>
                 ) : (
-                    <img className={styles['music-image']} src="src/assets/svgs/music-key-colored.svg" alt="Default song image" />
+                    <img className={styles['music-image']} src="./svgs/music-key-colored.svg" alt="Default song image" />
                 )}
             </div>
             <div className={styles['music-title']}>{music.title}</div>

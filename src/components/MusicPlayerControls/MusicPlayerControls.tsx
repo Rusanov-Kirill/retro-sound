@@ -15,13 +15,13 @@ const MusicCardControls = () => {
             </div>
             <div className={styles['player-control-buttons-wrapper']}>
                 <Button>
-                    <img src="src/assets/svgs/next-song.svg" alt="Next song button"></img>
+                    <img src="./svgs/next-song.svg" alt="Next song button"></img>
                 </Button>
                 <Button>
-                    <img src="src/assets/svgs/pause-button.svg" alt="Next song button"></img>
+                    <img src="./svgs/pause-button.svg" alt="Next song button"></img>
                 </Button>
                 <Button>
-                    <img src="src/assets/svgs/next-song.svg" alt="Next song button"></img>
+                    <img src="./svgs/next-song.svg" alt="Next song button"></img>
                 </Button>
             </div>
         </div>
