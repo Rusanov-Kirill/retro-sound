@@ -3,7 +3,7 @@ import path from 'path'
 import { format } from 'url'
 
 function createWindow() {
-  Menu.setApplicationMenu(null);
+  Menu.setApplicationMenu(null)
 
   const mainWindow = new BrowserWindow({
     width: 800,
@@ -14,19 +14,20 @@ function createWindow() {
     webPreferences: {
       nodeIntegration: false,
       contextIsolation: true,
+      preload: path.join(__dirname, 'preload.ts'),
     }
   })
 
-  const indexPath = path.join(__dirname, '../dist/index.html');
+  const indexPath = path.join(__dirname, '../dist/index.html')
 
   if (process.env.VITE_DEV_SERVER_URL) {
-    mainWindow.loadURL(process.env.VITE_DEV_SERVER_URL);
+    mainWindow.loadURL(process.env.VITE_DEV_SERVER_URL)
   } else {
     mainWindow.loadURL(format({
       pathname: indexPath,
       protocol: 'file:',
       slashes: true
-    }));
+    }))
   }
 }
 
