@@ -1,6 +1,9 @@
-import { app, BrowserWindow, Menu } from 'electron'
+import { app, BrowserWindow, Menu, ipcMain } from 'electron'
 import path from 'path'
 import { format } from 'url'
+
+const BASE_URL = 'http://localhost:5173'
+const isDev = process.env.NODE_ENV === 'development' || !app.isPackaged
 
 function createWindow() {
   Menu.setApplicationMenu(null)
@@ -14,14 +17,15 @@ function createWindow() {
     webPreferences: {
       nodeIntegration: false,
       contextIsolation: true,
-      preload: path.join(__dirname, 'preload.ts'),
+      preload: path.join(__dirname, 'preload.js'),
     }
   })
 
   const indexPath = path.join(__dirname, '../dist/index.html')
 
-  if (process.env.VITE_DEV_SERVER_URL) {
-    mainWindow.loadURL(process.env.VITE_DEV_SERVER_URL)
+  if (isDev) {
+    mainWindow.webContents.openDevTools()
+    mainWindow.loadURL(BASE_URL)
   } else {
     mainWindow.loadURL(format({
       pathname: indexPath,
