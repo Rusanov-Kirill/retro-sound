@@ -5,6 +5,13 @@ import { format } from 'url'
 const BASE_URL = 'http://localhost:5173'
 const isDev = process.env.NODE_ENV === 'development' || !app.isPackaged
 
+ipcMain.handle('window-close', (event) => {
+  const window = BrowserWindow.fromWebContents(event.sender)
+  if (window && !window.isDestroyed()) {
+    window.close()
+  } else console.log("Error: The window was not found or has already been destroyed")
+})
+
 function createWindow() {
   Menu.setApplicationMenu(null)
 
