@@ -1,9 +1,11 @@
 import { app, BrowserWindow, Menu, ipcMain } from 'electron'
 import path from 'path'
 import { format } from 'url'
+import fs from 'fs-extra'
 
 const BASE_URL = 'http://localhost:5173'
 const isDev = process.env.NODE_ENV === 'development' || !app.isPackaged
+const musicDir = path.join(app.getPath('userData'), 'music');
 
 ipcMain.handle('window-close', (event) => {
   const window = BrowserWindow.fromWebContents(event.sender)
@@ -48,6 +50,8 @@ app.whenReady().then(() => {
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) createWindow()
   })
+
+  fs.ensureDirSync(musicDir);
 })
 
 app.on('window-all-closed', () => {
